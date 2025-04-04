@@ -1,5 +1,3 @@
-version: '3.8'
-
 services:
   api-gateway:
     image: golang:1.18-alpine
@@ -14,6 +12,7 @@ services:
     environment:
       - INVENTORY_SERVICE_URL=http://inventory-service:8081
       - ORDER_SERVICE_URL=http://order-service:8082
+      - GIN_MODE=release
     networks:
       - ecommerce-network
 
@@ -28,6 +27,7 @@ services:
       - mongo
     environment:
       - MONGO_URI=mongodb://mongo:27017
+      - GIN_MODE=release
     networks:
       - ecommerce-network
 
@@ -42,6 +42,7 @@ services:
       - mongo
     environment:
       - MONGO_URI=mongodb://mongo:27017
+      - GIN_MODE=release
     networks:
       - ecommerce-network
 

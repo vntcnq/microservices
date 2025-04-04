@@ -23,8 +23,15 @@ func main() {
 	// Коллекция продуктов
 	productCollection = client.Database("ecommerce").Collection("products")
 
+	// Установка режима релиза
+	gin.SetMode(gin.ReleaseMode)
+
 	// Настройка маршрутов
 	router := gin.Default()
+
+	// Установка доверенных прокси
+	router.SetTrustedProxies([]string{"127.0.0.1", "0.0.0.0"})
+
 	router.POST("/products", createProduct)
 	router.GET("/products/:id", getProductByID)
 	router.PATCH("/products/:id", updateProduct)
