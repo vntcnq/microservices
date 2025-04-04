@@ -10,8 +10,10 @@ import (
 func main() {
 	router := gin.Default()
 
-	// Прокси маршруты
+	// Прокси для Inventory Service
 	router.Any("/inventory/*any", proxyHandler("http://inventory-service:8081"))
+
+	// Прокси для Order Service
 	router.Any("/orders/*any", proxyHandler("http://order-service:8082"))
 
 	log.Println("API Gateway запущен на порту 8080")
